@@ -1,10 +1,15 @@
-import React from "react";
-import Hello from "../src";
+import React, { useState } from "react";
+import PageTransition from "../src";
+import "./index.scss";
 
 export default function() {
+    const [page, setPage] = useState(true);
+
     return (
         <div>
-            <Hello className="my-hello" />
+            <button onClick={() => setPage(!page)}>切换页面</button>
+            <br />
+            <PageTransition timeout={1000}>{page ? <div className="home">Home</div> : <div className="about">About</div>}</PageTransition>
         </div>
     );
 }

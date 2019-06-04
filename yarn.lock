@@ -849,6 +849,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/classnames@^2.2.8":
+  version "2.2.8"
+  resolved "https://registry.npm.taobao.org/@types/classnames/download/@types/classnames-2.2.8.tgz#17139e1e1104203572caa4368f6796f6225b70b4"
+  integrity sha1-FxOeHhEEIDVyyqQ2j2eW9iJbcLQ=
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.npm.taobao.org/@types/estree/download/@types/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
@@ -8815,6 +8820,14 @@ xy-button@^0.0.2:
     "@fortawesome/free-solid-svg-icons" "^5.8.1"
     "@fortawesome/react-fontawesome" "^0.1.4"
     classnames "^2.2.6"
+    react "^16.8.2"
+    react-dom "^16.8.2"
+
+xy-css-transition@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npm.taobao.org/xy-css-transition/download/xy-css-transition-0.0.2.tgz#8f59c0973a2e15916c0d4c4c3cd52128e5a0895d"
+  integrity sha1-j1nAlzouFZFsDUxMPNUhKOWgiV0=
+  dependencies:
     react "^16.8.2"
     react-dom "^16.8.2"
 
