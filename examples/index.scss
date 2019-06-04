@@ -3,9 +3,43 @@
     z-index: 1;
     overflow: hidden;
 
-    .transition-leave-active {
-        position: absolute;
-        top: 0;
+    &.transition-mode-both {
+        .transition-leave-active {
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    &.transition-mode-in-out {
+        .transition-leave-active,
+        .transition-appear-active {
+            position: absolute;
+            top: 0;
+        }
+
+        .transition-appear-active {
+            z-index: 1;
+        }
+
+        .transition-leave-active {
+            z-index: -1;
+        }
+    }
+
+    &.transition-mode-out-in {
+        .transition-leave-active,
+        .transition-appear-active {
+            position: absolute;
+            top: 0;
+        }
+
+        .transition-appear-active {
+            z-index: -1;
+        }
+
+        .transition-leave-active {
+            z-index: 1;
+        }
     }
 }
 
@@ -32,7 +66,7 @@
 .about {
     width: 100%;
     background: darkcyan;
-    height: 300px;
+    min-height: 150px;
     line-height: 150px;
     text-align: center;
     font-size: 30px;

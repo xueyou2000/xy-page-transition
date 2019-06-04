@@ -48,16 +48,10 @@
     "dependencies": {
         "classnames": "^2.2.6",
         "react": "^16.8.2",
-        "react-dom": "^16.8.2",
-        "xy-css-transition": "^0.0.2"
+        "react-dom": "^16.8.2"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/xueyou2000/xy-page-transition.git"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "<rootDir>/node_modules/(?!(xy-css-transition))"
-        ]
     }
 }

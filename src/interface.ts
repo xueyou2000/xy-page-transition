@@ -11,7 +11,17 @@ export interface PageTransitionProps {
      * 过渡时间
      * @description 再复杂css时, 同时有很多动画和过渡样式, 所以需要手动指定
      */
-    timeout: number;
+    timeout?: number;
+    /**
+     * 进入元素过渡事件
+     * @description 如果不提供，则以timeout为准
+     */
+    inTimeout?: number;
+    /**
+     * 离开元素过渡事件
+     * @description 如果不提供，则以timeout为准
+     */
+    outTimeout?: number;
     /**
      * 页面过渡操作
      * @description 指定是前进还是后退, using history.action from History API

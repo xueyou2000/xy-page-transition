@@ -8823,14 +8823,6 @@ xy-button@^0.0.2:
     react "^16.8.2"
     react-dom "^16.8.2"
 
-xy-css-transition@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npm.taobao.org/xy-css-transition/download/xy-css-transition-0.0.2.tgz#8f59c0973a2e15916c0d4c4c3cd52128e5a0895d"
-  integrity sha1-j1nAlzouFZFsDUxMPNUhKOWgiV0=
-  dependencies:
-    react "^16.8.2"
-    react-dom "^16.8.2"
-
 xy-divider@^0.0.2:
   version "0.0.2"
   resolved "https://registry.npm.taobao.org/xy-divider/download/xy-divider-0.0.2.tgz#14c148c366056ece25863c75990595e033b25641"
