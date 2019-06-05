@@ -23,6 +23,11 @@ export interface PageTransitionProps {
      */
     outTimeout?: number;
     /**
+     * 延迟进入元素时间
+     * @description 如果不提供，则以timeout为准
+     */
+    delayTimeout?: number;
+    /**
      * 页面过渡操作
      * @description 指定是前进还是后退, using history.action from History API
      */
@@ -33,11 +38,12 @@ export interface PageTransitionProps {
     children?: React.ReactNode;
     /**
      * 过渡模式
-     * @description in-out=新元素先进行过渡，完成之后当前元素过渡离开
-     * out-in=当前元素先进行过渡，完成之后新元素过渡进入
-     * both=二者同时过渡
+     * @description in-out 新元素先进行过渡，完成之后当前元素过渡离开
+     * out-in 当前元素先进行过渡，完成之后新元素过渡进入
+     * both 二者同时过渡
+     * delay 延迟模式, 当前元素先进行过渡离开，延迟一段时间(delayTimeout)后, 新元素过渡进入
      */
-    mode?: "in-out" | "out-in" | "both";
+    mode?: "in-out" | "out-in" | "both" | "delay";
 }
 
 export interface PageTransitionState {

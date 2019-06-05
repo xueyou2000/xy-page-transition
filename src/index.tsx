@@ -5,15 +5,16 @@ import { PageTransitionProps, PageTransitionState } from "./interface";
 function loop() {}
 
 function PageTransition(props: PageTransitionProps) {
-    const { timeout = 300, inTimeout, outTimeout, transitionAction, children, mode = "both" } = props;
+    const { timeout = 300, inTimeout, outTimeout, delayTimeout, transitionAction, children, mode = "both" } = props;
     const customizeStateName = transitionAction ? transitionAction.toLocaleLowerCase() : transitionAction;
     const [childs, setChilds] = useState<PageTransitionState>({ child1: children, child2: null, current: 1 });
     const name = transitionAction || "transition";
-    const [appear, appearActive, leave, leaveActive] = [`${name}-appear`, `${name}-appear-active`, `${name}-leave`, `${name}-leave-active`];
+    const [appear, appearActive, leave, leaveActive, delayReady] = [`${name}-appear`, `${name}-appear-active`, `${name}-leave`, `${name}-leave-active`, `${name}-delay-ready`];
     const child1Ref = useRef(null);
     const child2Ref = useRef(null);
     const appearTimeHandle = useRef(null);
     const leaveTimeHandle = useRef(null);
+    const delayTimeHandle = useRef(null);
     const transition = useRef(false);
     const countRef = useRef(1);
 
@@ -50,6 +51,7 @@ function PageTransition(props: PageTransitionProps) {
         }
 
         newChild.style.display = "block";
+        newChild.classList.remove(delayReady);
         // 离开动画还没结束就立刻移除结束样式
         if (newChild.classList.contains(leaveActive)) {
             newChild.classList.remove(leaveActive, leave, `${name}-leave-complete`);
@@ -116,6 +118,19 @@ function PageTransition(props: PageTransitionProps) {
         });
     }
 
+    /**
+     * 新元素进入延迟准备
+     */
+    function newDelayReady() {
+        const newChild = getChild(childs.current);
+        if (!newChild) {
+            return;
+        }
+
+        newChild.style.display = "block";
+        newChild.classList.add(delayReady);
+    }
+
     function newAppearComplete() {
         const newChild = getChild(childs.current);
         if (!newChild) {
@@ -123,7 +138,7 @@ function PageTransition(props: PageTransitionProps) {
         }
 
         newChild.style.display = null;
-        newChild.classList.remove(appear, appearActive, `${name}-leave-complete`);
+        newChild.classList.remove(appear, appearActive, `${name}-leave-complete`, delayReady);
         newChild.classList.add(`${name}-appear-complete`);
         window.clearTimeout(appearTimeHandle.current);
     }
@@ -137,6 +152,7 @@ function PageTransition(props: PageTransitionProps) {
         oldChild.classList.remove(leave, leaveActive, `${name}-appear-complete`);
         oldChild.classList.add(`${name}-leave-complete`);
         window.clearTimeout(leaveTimeHandle.current);
+        window.clearTimeout(delayTimeHandle.current);
     }
 
     useEffect(() => {
@@ -163,6 +179,7 @@ function PageTransition(props: PageTransitionProps) {
         const count = countRef.current;
         window.clearTimeout(appearTimeHandle.current);
         window.clearTimeout(leaveTimeHandle.current);
+        window.clearTimeout(delayTimeHandle.current);
         switch (mode) {
             case "in-out":
                 Promise.resolve()
@@ -177,6 +194,23 @@ function PageTransition(props: PageTransitionProps) {
                 Promise.resolve()
                     .then(oldLeaveStart)
                     .then(oldLeaveEnd)
+                    .then(newAppearStart)
+                    .then(newAppearEnd)
+                    .then(() => reset(count))
+                    .catch(loop);
+                break;
+            case "delay":
+                Promise.resolve()
+                    .then(newDelayReady)
+                    .then(oldLeaveStart)
+                    .then(() => {
+                        return new Promise((resolve, reject) => {
+                            oldLeaveEnd();
+                            delayTimeHandle.current = setTimeout(() => {
+                                resolve();
+                            }, delayTimeout || timeout);
+                        });
+                    })
                     .then(newAppearStart)
                     .then(newAppearEnd)
                     .then(() => reset(count))

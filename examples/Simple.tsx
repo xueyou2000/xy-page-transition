@@ -10,14 +10,8 @@ export default function() {
             <button onClick={() => setPage(!page)}>切换页面</button>
             <br />
             <p>{page ? "Home" : "About"}</p>
-            <PageTransition timeout={1000} mode="both">
-                {page ? (
-                    <div className="home">Home</div>
-                ) : (
-                    <div className="about">
-                        About<h2>高度不一</h2>
-                    </div>
-                )}
+            <PageTransition timeout={1000} mode="both" delayTimeout={300}>
+                {page ? <div className="home">Home</div> : <div className="about">About</div>}
             </PageTransition>
         </div>
     );

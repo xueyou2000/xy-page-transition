@@ -1,7 +1,7 @@
 .transition-wrapper {
     position: relative;
     z-index: 1;
-    overflow: hidden;
+    // overflow: hidden;
 
     &.transition-mode-both {
         .transition-leave-active {
@@ -41,6 +41,13 @@
             z-index: 1;
         }
     }
+
+    &.transition-mode-delay {
+        .transition-leave-active {
+            position: absolute;
+            top: 0;
+        }
+    }
 }
 
 .home {
@@ -61,12 +68,16 @@
     &.transition-leave.transition-leave-active {
         animation-name: bounceOutLeft;
     }
+    &.transition-delay-ready {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
+    }
 }
 
 .about {
     width: 100%;
     background: darkcyan;
-    min-height: 150px;
+    height: 150px;
     line-height: 150px;
     text-align: center;
     font-size: 30px;
@@ -81,6 +92,11 @@
     &.transition-leave.transition-leave-active {
         animation-name: bounceOutRight;
     }
+
+    &.transition-delay-ready {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
 }
 
 @keyframes bounceInLeft {
@@ -94,7 +110,7 @@
 
     0% {
         opacity: 0;
-        transform: translate3d(-3000px, 0, 0);
+        transform: translate3d(-100%, 0, 0);
     }
 
     60% {
@@ -123,7 +139,7 @@
 
     to {
         opacity: 0;
-        transform: translate3d(-3000px, 0, 0);
+        transform: translate3d(-100%, 0, 0);
     }
 }
 
@@ -138,7 +154,7 @@
 
     from {
         opacity: 0;
-        transform: translate3d(3000px, 0, 0);
+        transform: translate3d(100%, 0, 0);
     }
 
     60% {
