@@ -10,7 +10,7 @@
 
 # xy-page-transition
 
-基于`React Hooks` + `typescript`的基础组件
+页面过渡组件
 
 ## 安装
 
@@ -21,26 +21,29 @@ yarn add xy-page-transition
 
 ## 使用例子
 
-```ts
+```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import XyPageTransition from "xy-page-transition";
-ReactDOM.render(<XyPageTransition />, container);
+import { PageTransition } from "xy-page-transition";
+ReactDOM.render(
+    <PageTransition timeout={300} mode="both">
+        {showHome ? <div className="home">Home</div> : <div className="about">About</div>}
+    </PageTransition>,
+    container
+);
 ```
 
 ## API
 
-| 属性     | 说明                                                               | 类型           | 默认值    |
-| -------- | ------------------------------------------------------------------ | -------------- | --------- |
-| ghost    | 幽灵属性，使按钮背景透明                                           | boolean        | false     |
-| long     | 是否长按钮                                                         | boolean        | false     |
-| icon     | 设置按钮的图标类型                                                 | IconDefinition | -         |
-| loading  | 设置按钮载入状态                                                   | boolean        | `false`   |
-| disabled | 按钮失效状态                                                       | boolean        | `false`   |
-| shape    | 设置按钮形状，可选值为 `circle` 或者不设                           | string         | -         |
-| size     | 设置按钮大小，可选值为 `small` `large` 或者不设                    | string         | `default` |
-| type     | 设置按钮类型，可选值为 `primary` `dashed` `text` `danger` 或者不设 | string         | -         |
-| onClick  | `click` 事件的 handler                                             | function       | -         |
+| 属性             | 说明                                                                   | 类型   | 默认值 |
+| ---------------- | ---------------------------------------------------------------------- | ------ | ------ |
+| timeout          | 过渡时间                                                               | number | `300`  |
+| inTimeout        | 进入元素过渡时间,如果不提供，则以 timeout 为准                         | number | -      |
+| outTimeout       | 离开元素过渡时间,如果不提供，则以 timeout 为准                         | number | -      |
+| delayTimeout     | 延迟进入元素过渡时间,如果不提供，则以 timeout 为准                     | number | -      |
+| transitionAction | 页面过渡操作,指定是前进还是后退, using history.action from History API | Action | -      |
+| mode             | 过渡模式,可选值为 `in-out` `out-in` `both` `delay` 或者不设            | string | `both` |
+| data             | 传递给页面事件的附加参数                                               | any    | -      |
 
 ## 开发
 

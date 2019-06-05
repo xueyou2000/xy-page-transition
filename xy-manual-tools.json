@@ -3,5 +3,10 @@
         "name": "Simple",
         "title": "简单例子",
         "desc": "在2个模拟页面中切换。"
+    },
+    {
+        "name": "Page",
+        "title": "页面切换",
+        "desc": "可以使用 PageTransitionContext 监听页面过渡动画事件, 来达到自定义动画。"
     }
 ]

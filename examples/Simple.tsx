@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PageTransition from "../src";
+import { PageTransition } from "../src";
 import "./index.scss";
 
 export default function() {
