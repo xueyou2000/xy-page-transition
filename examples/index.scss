@@ -1,7 +1,7 @@
 .transition-wrapper {
     position: relative;
     z-index: 1;
-    // overflow: hidden;
+    overflow: hidden;
 
     &.transition-mode-both {
         .transition-leave-active {

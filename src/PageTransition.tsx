@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 function loop() {}
 
 function PageTransition(props: PageTransitionProps) {
-    const { timeout = 300, inTimeout, outTimeout, delayTimeout, transitionAction, children, mode = "both", data } = props;
+    const { timeout = 300, inTimeout, outTimeout, delayTimeout, transitionAction, children, mode = "both", data, disabled = false } = props;
     const customizeStateName = transitionAction ? transitionAction.toLocaleLowerCase() : transitionAction;
     const [childs, setChilds] = useState<PageTransitionState>({ child1: children, child2: null, current: 1 });
     const name = transitionAction || "transition";
@@ -239,6 +239,15 @@ function PageTransition(props: PageTransitionProps) {
         if (children === childs[`child${childs.current}`]) {
             return;
         }
+        if (disabled) {
+            if (childs.current === 1) {
+                setChilds({ child1: children, child2: null, current: 1 });
+            } else {
+                setChilds({ child1: null, child2: children, current: 2 });
+            }
+            return;
+        }
+
         if (transition.current) {
             // 上一个过渡还没完毕，则立即设置为完毕状态
             oldLeaveComplete();

@@ -10,6 +10,10 @@ export type PageEventCallback = (appear: HTMLElement, leave: HTMLElement, data?:
 
 export interface PageTransitionProps {
     /**
+     * 是否禁用过渡
+     */
+    disabled?: boolean;
+    /**
      * 过渡时间
      */
     timeout?: number;

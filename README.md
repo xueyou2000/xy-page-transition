@@ -35,15 +35,16 @@ ReactDOM.render(
 
 ## API
 
-| 属性             | 说明                                                                   | 类型   | 默认值 |
-| ---------------- | ---------------------------------------------------------------------- | ------ | ------ |
-| timeout          | 过渡时间                                                               | number | `300`  |
-| inTimeout        | 进入元素过渡时间,如果不提供，则以 timeout 为准                         | number | -      |
-| outTimeout       | 离开元素过渡时间,如果不提供，则以 timeout 为准                         | number | -      |
-| delayTimeout     | 延迟进入元素过渡时间,如果不提供，则以 timeout 为准                     | number | -      |
-| transitionAction | 页面过渡操作,指定是前进还是后退, using history.action from History API | Action | -      |
-| mode             | 过渡模式,可选值为 `in-out` `out-in` `both` `delay` 或者不设            | string | `both` |
-| data             | 传递给页面事件的附加参数                                               | any    | -      |
+| 属性             | 说明                                                                   | 类型    | 默认值  |
+| ---------------- | ---------------------------------------------------------------------- | ------- | ------- |
+| disabled         | 是否禁用动画                                                           | boolean | `false` |
+| timeout          | 过渡时间                                                               | number  | `300`   |
+| inTimeout        | 进入元素过渡时间,如果不提供，则以 timeout 为准                         | number  | -       |
+| outTimeout       | 离开元素过渡时间,如果不提供，则以 timeout 为准                         | number  | -       |
+| delayTimeout     | 延迟进入元素过渡时间,如果不提供，则以 timeout 为准                     | number  | -       |
+| transitionAction | 页面过渡操作,指定是前进还是后退, using history.action from History API | Action  | -       |
+| mode             | 过渡模式,可选值为 `in-out` `out-in` `both` `delay` 或者不设            | string  | `both`  |
+| data             | 传递给页面事件的附加参数                                               | any     | -       |
 
 ## 开发
 
