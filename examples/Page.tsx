@@ -27,7 +27,7 @@ for (let i = 0; i < 6; ++i) {
     items.push({
         id: i,
         text: `Item ${i}`,
-        color: randomColor()
+        color: randomColor(),
     });
 }
 
@@ -41,8 +41,8 @@ const ListPage = React.forwardRef((props: { onChange: ({ position, item }: DataS
     return (
         <div className="list-page" ref={ref}>
             <p>List Page</p>
-            {items.map((item) => (
-                <a onClick={(e) => handle(e, item)}>
+            {items.map((item, i) => (
+                <a key={i} onClick={(e) => handle(e, item)}>
                     <Item {...item} />
                 </a>
             ))}
@@ -59,7 +59,7 @@ const ItemDetailPage = React.forwardRef((props: { data: DataState; onBack: () =>
         const { position } = data;
         setState({
             doTransform: true,
-            position: { width: `${position.width}px`, height: `${position.height}px`, left: `${position.left}px`, top: `${position.top}px` }
+            position: { width: `${position.width}px`, height: `${position.height}px`, left: `${position.left}px`, top: `${position.top}px` },
         });
 
         // appear.style.width = `${position.width}px`;
@@ -72,7 +72,7 @@ const ItemDetailPage = React.forwardRef((props: { data: DataState; onBack: () =>
         requestAnimationFrame(() => {
             setState({
                 doTransform: true,
-                position: { width: `100%`, height: `100%`, left: `0px`, top: `0px` }
+                position: { width: `100%`, height: `100%`, left: `0px`, top: `0px` },
             });
 
             // appear.style.width = `100%`;
@@ -85,7 +85,7 @@ const ItemDetailPage = React.forwardRef((props: { data: DataState; onBack: () =>
     pageEvent.onAppearEnd((appear, leave) => {
         setState({
             doTransform: false,
-            position: null
+            position: null,
         });
 
         // appear.style.width = null;
@@ -97,7 +97,7 @@ const ItemDetailPage = React.forwardRef((props: { data: DataState; onBack: () =>
     pageEvent.onLeaveWillStart((appear, leave) => {
         setState({
             doTransform: true,
-            position: { width: `100%`, height: `100%`, left: `0px`, top: `0px` }
+            position: { width: `100%`, height: `100%`, left: `0px`, top: `0px` },
         });
 
         // leave.style.width = `100%`;
@@ -111,7 +111,7 @@ const ItemDetailPage = React.forwardRef((props: { data: DataState; onBack: () =>
         requestAnimationFrame(() => {
             setState({
                 doTransform: true,
-                position: { width: `${position.width}px`, height: `${position.height}px`, left: `${position.left}px`, top: `${position.top}px` }
+                position: { width: `${position.width}px`, height: `${position.height}px`, left: `${position.left}px`, top: `${position.top}px` },
             });
 
             // leave.style.width = `${position.width}px`;
@@ -126,7 +126,7 @@ const ItemDetailPage = React.forwardRef((props: { data: DataState; onBack: () =>
         height: state.doTransform ? state.position.height : null,
         left: state.doTransform ? state.position.left : null,
         top: state.doTransform ? state.position.top : null,
-        background: data && data.item.color
+        background: data && data.item.color,
     };
 
     return (

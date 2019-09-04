@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-testing-library";
+import { render } from "@testing-library/react";
 import { PageTransition } from "../src";
 
 // 由于内部调用得 Promise 导致无法进行测试
