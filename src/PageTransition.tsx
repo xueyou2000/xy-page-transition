@@ -32,7 +32,7 @@ function PageTransition(props: PageTransitionProps) {
             [`child${prev}`]: null,
             [`child${childs.current}`]: children,
             current: childs.current,
-            stage: null
+            stage: null,
         };
         transition.current = false;
         setChilds(state);
@@ -75,7 +75,7 @@ function PageTransition(props: PageTransitionProps) {
             },
             onLeaveing: (cb) => {
                 context.onLeaveing = cb;
-            }
+            },
         };
     }
 
@@ -95,7 +95,7 @@ function PageTransition(props: PageTransitionProps) {
             context.onAppearWillStart(newChild, oldChild, data);
         }
 
-        newChild.style.display = "block";
+        newChild.style.display = null;
         newChild.classList.remove(delayReady);
         // 离开动画还没结束就立刻移除结束样式
         if (newChild.classList.contains(leaveActive)) {
@@ -193,7 +193,7 @@ function PageTransition(props: PageTransitionProps) {
             return;
         }
 
-        newChild.style.display = "block";
+        newChild.style.display = null;
         newChild.classList.add(delayReady);
     }
 

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0 (Thu Dec 26 2019)
+
+-    不在强制在动画时写死`display: block`
+
 ## 0.1.0 (Tue Nov 19 2019)
 
 -   修复`react`与`react-dom`版本不一致导致的问题
